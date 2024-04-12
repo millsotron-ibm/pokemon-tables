@@ -1,0 +1,194 @@
+.hotel-list {
+    container-type: inline-size;
+    width: min(100% - 3rem, 800px);
+    margin-inline: auto;
+    display: grid;
+    gap: 1rem;
+  }
+  
+  .hotel-listing {
+    border: 5px dotted red;
+    display: flex;
+    gap: 1.5rem;
+  }
+  
+  .hotel-listing > * {
+    outline: 2px solid lime;
+    flex-shrink: 1;
+    flex-grow: 0;
+  }
+  
+  .hotel-info {
+    flex-shrink: 1;
+    flex-grow: 1;
+    flex-basis: 30ch;
+  }
+  
+  .hotel-meta {
+    flex-shrink: 0;
+    flex-basis: 14ch;
+  }
+  
+  @layer reset {
+    * {
+      margin: 0;
+    }
+  
+    *,
+    ::before,
+    ::after {
+      box-sizing: border-box;
+    }
+  }
+  
+  @layer general {
+    :root {
+      --surface-1: hsl(218, 75%, 8%);
+      --surface-2: hsl(219, 74%, 12%);
+      --surface-3: hsl(218, 49%, 15%);
+      --text-1: hsl(220, 10%, 89%);
+      --text-2: hsl(219, 11%, 69%);
+  
+      --warning-1: hsl(2, 61%, 65%);
+      --warning-2: hsl(2, 65%, 10%);
+      --success-1: hsl(124, 39%, 42%);
+      --success-2: hsl(125, 39%, 12%);
+      --info-1: hsl(219, 59%, 55%);
+      --info-2: hsl(219, 59%, 12%);
+  
+      --fs-heading-1: 3rem;
+      --fs-heading-2: 1.5rem;
+      --fs-body-reg: 1rem;
+      --fs-body-sm: 0.925rem;
+    }
+  
+    html {
+      color-scheme: dark;
+  
+      color: var(--text-1);
+      font-size: var(--fs-body-reg);
+      font-family: system-ui, sans-serif;
+      background-color: var(--surface-1);
+  
+      padding-block: 4rem;
+    }
+  
+    h1,
+    h2,
+    h3 {
+      font-weight: 500;
+    }
+  
+    img {
+      max-width: 100%;
+      display: block;
+    }
+  }
+  
+  @layer components {
+    @container (width < 450px) {
+      .hotel-listing {
+        flex-direction: column;
+      }
+    }
+  
+    .hotel-listing {
+      padding: 1rem;
+      background-color: var(--surface-2);
+      border: 1px solid var(--surface-3);
+      border-radius: 0.5rem;
+    }
+  
+    .hotel-info {
+      display: flex;
+      gap: 0.25lh;
+      flex-direction: column;
+    }
+  
+    .hotel-info ul {
+      list-style: none;
+      padding: 0;
+      /*   display: flex; */
+      font-size: var(--fs-body-sm);
+      color: var(--text-2);
+    }
+  
+    .hotel-info li {
+      display: inline-block;
+    }
+  
+    .hotel-info li:not(:last-of-type)::after {
+      content: ", ";
+    }
+  
+    .hotel-image {
+      > img {
+        object-fit: cover;
+        height: 7lh;
+        border-radius: 0.25rem;
+      }
+    }
+  
+    .hotel-meta {
+      display: flex;
+      flex-direction: column;
+      text-align: end;
+    }
+  
+    .hotel-rating {
+      width: max-content;
+      display: flex;
+      align-items: center;
+      margin-left: auto;
+      gap: 0.5rem;
+    }
+  
+    .hotel-rating::before {
+      content: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDE2MCAxNTIiIGZpbGw9Im5vbmUiPgo8cGF0aCBkPSJNODAgMEw5OC44NTkyIDU4LjA0MjZIMTU5Ljg4OUwxMTAuNTE1IDkzLjkxNDlMMTI5LjM3NCAxNTEuOTU3TDgwIDExNi4wODVMMzAuNjI2IDE1MS45NTdMNDkuNDg1MiA5My45MTQ5TDAuMTExMjUyIDU4LjA0MjZINjEuMTQwOEw4MCAwWiIgZmlsbD0iaHNsKDQxLCA4OSUsIDYxJSkiLz4KPC9zdmc+");
+    }
+  
+    .hotel-price {
+      font-size: var(--fs-heading-2);
+      font-weight: 500;
+  
+      s {
+        font-size: var(--fs-body-sm);
+        color: var(--warning-1);
+        font-weight: 400;
+      }
+    }
+  
+    .tag {
+      color: var(--_color, white);
+      background: var(--_bg, black);
+      border-radius: 0.25rem;
+      width: fit-content;
+      padding: 0.25em 0.5em;
+      font-size: var(--fs-body-sm);
+  
+      &[data-state="warning"] {
+        --_color: var(--warning-1);
+        --_bg: var(--warning-2);
+      }
+  
+      &[data-state="success"] {
+        --_color: var(--success-1);
+        --_bg: var(--success-2);
+      }
+    }
+  }
+  
+  @layer utilities {
+    .text-subdued {
+      color: var(--text-2);
+    }
+  
+    .push-right {
+      margin-left: auto;
+    }
+  
+    .push-down {
+      margin-top: auto;
+    }
+  }
+  
