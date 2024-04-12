@@ -1,4 +1,4 @@
-.hotel-list {
+.pokemon-list {
     container-type: inline-size;
     width: min(100% - 3rem, 800px);
     margin-inline: auto;
@@ -6,27 +6,27 @@
     gap: 1rem;
   }
   
-  .hotel-listing {
+  .pokemon-listing {
     border: 5px dotted red;
     display: flex;
     gap: 1.5rem;
   }
   
-  .hotel-listing > * {
+  .pokemon-listing > * {
     outline: 2px solid lime;
     flex-shrink: 1;
     flex-grow: 0;
   }
   
-  .hotel-info {
+  .pokemon-info {
     flex-shrink: 1;
     flex-grow: 1;
     flex-basis: 30ch;
   }
   
-  .hotel-meta {
+  .pokemon-meta {
     flex-shrink: 0;
-    flex-basis: 14ch;
+    flex-basis: 24ch;
   }
   
   @layer reset {
@@ -87,25 +87,25 @@
   
   @layer components {
     @container (width < 450px) {
-      .hotel-listing {
+      .pokemon-listing {
         flex-direction: column;
       }
     }
   
-    .hotel-listing {
+    .pokemon-listing {
       padding: 1rem;
       background-color: var(--surface-2);
       border: 1px solid var(--surface-3);
       border-radius: 0.5rem;
     }
   
-    .hotel-info {
+    .pokemon-info {
       display: flex;
       gap: 0.25lh;
       flex-direction: column;
     }
   
-    .hotel-info ul {
+    .pokemon-info ul {
       list-style: none;
       padding: 0;
       /*   display: flex; */
@@ -113,15 +113,15 @@
       color: var(--text-2);
     }
   
-    .hotel-info li {
+    .pokemon-info li {
       display: inline-block;
     }
   
-    .hotel-info li:not(:last-of-type)::after {
+    .pokemon-info li:not(:last-of-type)::after {
       content: ", ";
     }
   
-    .hotel-image {
+    .pokemon-image {
       > img {
         object-fit: cover;
         height: 7lh;
@@ -129,13 +129,13 @@
       }
     }
   
-    .hotel-meta {
+    .pokemon-meta {
       display: flex;
       flex-direction: column;
       text-align: end;
     }
   
-    .hotel-rating {
+    .pokemon-rating {
       width: max-content;
       display: flex;
       align-items: center;
@@ -143,11 +143,11 @@
       gap: 0.5rem;
     }
   
-    .hotel-rating::before {
+    .pokemon-rating::before {
       content: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDE2MCAxNTIiIGZpbGw9Im5vbmUiPgo8cGF0aCBkPSJNODAgMEw5OC44NTkyIDU4LjA0MjZIMTU5Ljg4OUwxMTAuNTE1IDkzLjkxNDlMMTI5LjM3NCAxNTEuOTU3TDgwIDExNi4wODVMMzAuNjI2IDE1MS45NTdMNDkuNDg1MiA5My45MTQ5TDAuMTExMjUyIDU4LjA0MjZINjEuMTQwOEw4MCAwWiIgZmlsbD0iaHNsKDQxLCA4OSUsIDYxJSkiLz4KPC9zdmc+");
     }
   
-    .hotel-price {
+    .pokemon-price {
       font-size: var(--fs-heading-2);
       font-weight: 500;
   
