@@ -25,7 +25,7 @@ function fetchPokemonList(offset) {
 }
 
 function createPokemonListing(pokemonData) {
-  // Create a new pokemon listing element with the Pokemon's information
+  // Create a new Pokemon listing element with the Pokemon's information
   const listing = document.createElement("article");
   listing.className = "pokemon-listing";
 
@@ -46,10 +46,14 @@ function createPokemonListing(pokemonData) {
     featuresList.appendChild(listItem);
   });
 
+  const pokemonInfo = document.createElement("div");
+  pokemonInfo.className = "pokemon-info";
+  pokemonInfo.appendChild(nameElement);
+  pokemonInfo.appendChild(idElement);
+  pokemonInfo.appendChild(featuresList);
+
   listing.appendChild(imageElement);
-  listing.appendChild(nameElement);
-  listing.appendChild(idElement);
-  listing.appendChild(featuresList);
+  listing.appendChild(pokemonInfo);
 
   return listing;
 }
