@@ -3,9 +3,7 @@ const itemsPerPage = 10;
 
 function fetchPokemonList(offset) {
   // Fetch a list of Pokemon from the Pokemon API with pagination
-  fetch(
-    `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${itemsPerPage}`
-  )
+  fetch(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${itemsPerPage}`)
     .then((response) => response.json())
     .then((data) => {
       // Get the Pokemon list container element
@@ -25,7 +23,7 @@ function fetchPokemonList(offset) {
 }
 
 function createPokemonListing(pokemonData) {
-  // Create a new Pokemon listing element with the Pokemon's information
+  // Create a new pokemon listing element with the Pokemon's information
   const listing = document.createElement("article");
   listing.className = "pokemon-listing";
 
@@ -46,20 +44,32 @@ function createPokemonListing(pokemonData) {
     featuresList.appendChild(listItem);
   });
 
-  const pokemonInfo = document.createElement("div");
-  pokemonInfo.className = "pokemon-info";
-  pokemonInfo.appendChild(nameElement);
-  pokemonInfo.appendChild(idElement);
-  pokemonInfo.appendChild(featuresList);
-
   listing.appendChild(imageElement);
-  listing.appendChild(pokemonInfo);
+  listing.appendChild(nameElement);
+  listing.appendChild(idElement);
+  listing.appendChild(featuresList);
 
   return listing;
 }
 
-// Fetch the initial Pokemon list
+function fetchPokemonTypes() {
+  fetch("https://pokeapi.co/api/v2/type")
+    .then((response) => response.json())
+    .then((data) => {
+      const typeSelector = document.getElementById("pokemon-type-selector");
+
+      data.results.forEach((type) => {
+        const option = document.createElement("option");
+        option.value = type.url;
+        option.textContent = type.name;
+        typeSelector.appendChild(option);
+      });
+    });
+}
+
+// Fetch the initial Pokemon list and types
 fetchPokemonList(currentPage * itemsPerPage);
+fetchPokemonTypes();
 
 // Add click event listeners for the Next and Previous buttons
 document.getElementById("previous-btn").addEventListener("click", () => {
