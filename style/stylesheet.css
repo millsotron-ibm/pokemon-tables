@@ -13,16 +13,18 @@ body {
   background-position: center;
   background-size: cover;
   background-color: rgba(0, 0, 0, 0.4);
-  /* animation: moveBackground 20s linear infinite; Add the moveBackground animation */
+  animation: moveBackground 20s linear infinite; Add the moveBackground animation
 
 }
 
 @keyframes moveBackground {
   0%, 100% {
-    background-position: center;
+    /* background-position: center; */
+    /* transform: rotate(0); */
   }
   50% {
-    background-position: center -30px;
+    /* background-position: center -30px; */
+    /* transform: rotate(10deg); */
   }
 }
 
@@ -36,7 +38,7 @@ h1 {
 
 /* Container and buttons */
 .container {
-  max-width: 960px;
+  max-width: 80%;
   margin: 0 auto;
   padding: 1rem;
 }
@@ -64,29 +66,28 @@ button:hover {
 .pokemon-list {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 4rem;
 }
 
 .pokemon-listing {
-  background-color: rgba(46, 44, 51, 0.7); /* Updated base color to #2e2c33 with opacity */
+  background-color: rgba(46, 44, 51, 0.7);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border-radius: 4px;
   display: flex;
   gap: 1.5rem;
   padding: 1rem;
   align-items: center;
-  border-radius: 50px; /* Add rounded edges to the modal */
+  border-radius: 20px;
 }
 
 .pokemon-listing img {
-  width: 180px;
-  height: 180px;
-  transition: transform 0.3s, filter 0.3s; /* Add smooth transitions for transform and filter */
+  width: 300px;
+  height: auto;
+  transition: transform 0.3s, filter 0.3s;
 }
 
 .pokemon-listing img:hover {
   transform: scale(1.1); /* Add a subtle scale effect on hover */
-  filter: brightness(0.8) contrast(1.2); /* Adjust brightness and contrast for a more subtle effect */
+  filter: brightness(0.8) contrast(1.2);
 }
 
 .pokemon-name {
@@ -126,21 +127,23 @@ button:hover {
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-image: url('../images/persona5background.webp'); /* Add your background image */
+  background-image: url('../images/ash-pikachu.jpeg'); Add your background image
   background-repeat: no-repeat;
-  background-position: center;
-  /* background-size: cover; */
-  background-size: 150%; /* Set the initial size to be larger than the container */
+  /* background-position: center; */
+  background-size: cover;
+  background-size: 110%; /* Set the initial size to be larger than the container */
   background-color: rgba(0, 0, 0, 0.4);
-  animation: moveModalBackground 10s linear infinite;
+  animation: moveModalBackground 20s linear infinite;
 }
 
 @keyframes moveModalBackground {
   0%, 100%{
     background-position: 0 0;
+    /* transform: rotate(0); */
   }
   50% {
     background-position: -50px -50px;
+    /* transform: rotate(180); */
   }
 }
 
@@ -154,7 +157,7 @@ button:hover {
   opacity: 0; /* Set initial opacity for the animation */
   transform: scale(0.5); /* Set initial scale for the animation */
   animation: zoom 0.3s forwards; /* Add the zoom animation */
-  border-radius: 50px; /* Add rounded edges to the modal */
+  border-radius: 20px; /* Add rounded edges to the modal */
 }
 
 .pokemon-modal-content img {
