@@ -1,9 +1,11 @@
 let currentPage = 0;
-const itemsPerPage = 10;
+const itemsPerPage = 5;
 
 function fetchPokemonList(offset) {
   // Fetch a list of Pokemon from the Pokemon API with pagination
-  fetch(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${itemsPerPage}`)
+  fetch(
+    `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${itemsPerPage}`
+  )
     .then((response) => response.json())
     .then((data) => {
       // Get the Pokemon list container element
@@ -27,17 +29,21 @@ function createPokemonListing(pokemonData) {
   const listing = document.createElement("article");
   listing.className = "pokemon-listing";
 
+  listing.onclick = () => {
+    fetchPokemonDetails(pokemonData.id);
+  };
+
   const imageElement = document.createElement("img");
   imageElement.src = pokemonData.sprites.front_default;
   imageElement.alt = pokemonData.name;
 
-  const nameElement = document.createElement("h2");
+  const nameElement = document.createElement("pokemon-name");
   nameElement.textContent = pokemonData.name;
 
-  const idElement = document.createElement("p");
+  const idElement = document.createElement("pokemon-id");
   idElement.textContent = `ID: ${pokemonData.id}`;
 
-  const featuresList = document.createElement("ul");
+  const featuresList = document.createElement("pokemon-types");
   pokemonData.types.forEach((type) => {
     const listItem = document.createElement("li");
     listItem.textContent = type.type.name;
@@ -83,3 +89,44 @@ document.getElementById("next-btn").addEventListener("click", () => {
   currentPage++;
   fetchPokemonList(currentPage * itemsPerPage);
 });
+
+function fetchPokemonDetails(id) {
+  fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
+    .then((response) => response.json())
+    .then((pokemonData) => {
+      displayPokemonDetails(pokemonData);
+    });
+}
+
+
+function displayPokemonDetails(pokemonData) {
+  // Create a modal element
+  const modal = document.createElement('div');
+  modal.className = 'pokemon-modal';
+  modal.innerHTML = `
+    <div class="pokemon-modal-content">
+      <span class="pokemon-modal-close">&times;</span>
+      <h2>${pokemonData.name}</h2>
+      <img src="${pokemonData.sprites.front_default}" alt="${pokemonData.name}" />
+      <p>ID: ${pokemonData.id}</p>
+      <p>Height: ${pokemonData.height}</p>
+      <p>Weight: ${pokemonData.weight}</p>
+      <p>Base experience: ${pokemonData.base_experience}</p>
+    </div>
+  `;
+
+  document.body.appendChild(modal);
+
+  // Handle the close button click event
+  const closeButton = document.querySelector('.pokemon-modal-close');
+  closeButton.onclick = () => {
+    modal.remove();
+  };
+
+  // Handle clicking outside the modal content to close the modal
+  window.onclick = (event) => {
+    if (event.target === modal) {
+      modal.remove();
+    }
+  };
+}
