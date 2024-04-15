@@ -13,6 +13,17 @@ body {
   background-position: center;
   background-size: cover;
   background-color: rgba(0, 0, 0, 0.4);
+  /* animation: moveBackground 20s linear infinite; Add the moveBackground animation */
+
+}
+
+@keyframes moveBackground {
+  0%, 100% {
+    background-position: center;
+  }
+  50% {
+    background-position: center -30px;
+  }
 }
 
 h1 {
@@ -41,7 +52,7 @@ button {
   font-size: 1rem;
   margin: 4px 2px;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 10px;
   transition: background-color 0.3s;
 }
 
@@ -57,13 +68,14 @@ button:hover {
 }
 
 .pokemon-listing {
-  background-color: #2e2c33;
+  background-color: rgba(46, 44, 51, 0.7); /* Updated base color to #2e2c33 with opacity */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 4px;
   display: flex;
   gap: 1.5rem;
   padding: 1rem;
   align-items: center;
+  border-radius: 50px; /* Add rounded edges to the modal */
 }
 
 .pokemon-listing img {
@@ -99,7 +111,7 @@ button:hover {
   background-color: #ff4081;
   color: white;
   padding: 4px 8px;
-  border-radius: 4px;
+  border-radius: 5px;
   font-size: 1rem;
 }
 
@@ -117,13 +129,23 @@ button:hover {
   background-image: url('../images/persona5background.webp'); /* Add your background image */
   background-repeat: no-repeat;
   background-position: center;
-  background-size: cover;
+  /* background-size: cover; */
+  background-size: 150%; /* Set the initial size to be larger than the container */
   background-color: rgba(0, 0, 0, 0.4);
+  animation: moveModalBackground 10s linear infinite;
+}
+
+@keyframes moveModalBackground {
+  0%, 100%{
+    background-position: 0 0;
+  }
+  50% {
+    background-position: -50px -50px;
+  }
 }
 
 .pokemon-modal-content {
-  background-color: black;
-  margin: auto;
+  background-color: rgba(46, 44, 51, 0.7); /* Updated base color to #2e2c33 with opacity */  margin: auto;
   padding: 20px;
   border: 1px solid #888;
   width: 80%;
@@ -132,6 +154,14 @@ button:hover {
   opacity: 0; /* Set initial opacity for the animation */
   transform: scale(0.5); /* Set initial scale for the animation */
   animation: zoom 0.3s forwards; /* Add the zoom animation */
+  border-radius: 50px; /* Add rounded edges to the modal */
+}
+
+.pokemon-modal-content img {
+  width: 70%; /* Adjust the width as desired */
+  height: auto; /* Maintain the aspect ratio */
+  display: block;
+  margin: 0 auto; /* Center the image horizontally */
 }
 
 @keyframes zoom {
