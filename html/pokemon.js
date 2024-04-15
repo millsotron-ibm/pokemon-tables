@@ -1,5 +1,5 @@
 let currentPage = 0;
-const itemsPerPage = 5;
+const itemsPerPage = 10;
 
 function fetchPokemonList(offset) {
   // Fetch a list of Pokemon from the Pokemon API with pagination
